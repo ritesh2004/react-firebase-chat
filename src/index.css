@@ -1,0 +1,207 @@
+*{
+  margin: 0; padding: 0; box-sizing: border-box; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.signup{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: cyan;
+}
+
+.signup .signup-wrap{
+  height: 60%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+
+.signup .signup-wrap form{
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.signup .signup-wrap form input{
+  height: 50px;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background: transparent;
+  border-bottom: solid 1px gray;
+}
+.signup .signup-wrap form input ::placeholder{
+  color: black;
+  font-weight: 300;
+}
+.signup .signup-wrap form .logo{
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  font-weight: bold;
+  color: blue;
+}
+.signup .signup-wrap form .title{
+  display: flex;
+  justify-content: center;
+  color: violet;
+}
+.signup .signup-wrap form button{
+  height: 40px;
+  font-size: larger;
+  color: white;
+  background-color: blueviolet;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.signup .signup-wrap form button:disabled{
+  background-color: gray;
+  cursor: not-allowed;
+}
+.home{
+  background-color: cyan;
+  height: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+.home-con{
+  margin-top: 50px;
+  width: 60%;
+}
+.sidebar{
+  background-color: #06155a;
+  color: white;
+  padding: 0%;
+  min-height: 668px;
+  max-height: fit-content;
+  box-shadow:  inset(1px 9px 0px #030f45);
+  border-right: solid 1px gray;
+}
+.sidebar input{
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.chats,.userChat{
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.chats:hover{
+  background-color: #030f45;
+  cursor: pointer;
+}
+.chats .text{
+  display: flex;
+  flex-direction: column;
+}
+.chatnav{
+  padding: 0px;
+}
+.chatroom{
+  border-left: solid 1px #030f45;
+  height: 600px;
+  background-color: #06155a;
+}
+.message-text{
+  background-color: white;
+  padding: 10px;
+  border-radius: 0px 10px 10px 10px;
+  max-width: 300px;
+  min-width: min-content;
+}
+.messages{
+  padding: 10px;
+  height: 548px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  overflow: scroll;
+}
+.message{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+/* .input-sec{
+  border: solid 1px black;
+} */
+/* .chatroom .input-sec{
+  position: absolute;
+  bottom: 42px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  background-color: white;
+  height: 70px;
+} */
+.chatroom .input-sec input{
+  width: auto;
+  outline: none;
+}
+.chatroom .input-sec button{
+  background-color:  rgb(85, 253, 111);
+  color: white;
+  border: none;
+  width: 70px;
+}
+.search{
+  padding: 5px;
+}
+.search .search-user input{
+  border: none;
+  outline: none;
+  color: white;
+}
+.userChat{
+  border: none;
+  border-bottom: solid 1px white;
+}
+.userChat:hover{
+  background-color: #030f45;
+  cursor: pointer;
+}
+.messageuser-text{
+  background-color: rgb(152, 254, 167);
+  padding: 10px;
+  border-radius: 10px 0px 10px 10px;
+  max-width: 300px;
+  min-width: min-content;
+}
+.message-user{
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+#sendbtn{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width:1156px) {
+  #logoutbtn{
+    position: relative;
+    bottom: -608px;
+    left: -75px;
+  }
+  .home-con{
+    margin-top: 10px;
+  }
+  .signup .signup-wrap form{
+    width: 300px;
+  }
+  .signup .signup-wrap{
+    width: 50%;
+  }
+}

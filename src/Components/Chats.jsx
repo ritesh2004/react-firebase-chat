@@ -13,7 +13,7 @@ function Chats() {
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-        setChats(doc.data())
+        setChats(doc.data());
       });
 
       return () => {
@@ -22,9 +22,9 @@ function Chats() {
     }
 
     currentUser.uid && getChats();
-  }, [currentUser.uid])
-  const arr = Object.entries(chats)
-  console.log(arr)
+  })
+  // const arr = Object.entries(chats)
+  // console.log(arr)
   // console.log(arr[0][1])
 
   const handleSelect = (u) =>{
@@ -34,7 +34,7 @@ function Chats() {
   return (
     <div>
     {
-      <span></span> && Object.entries(chats)?.map((chat) => (
+      chats?Object.entries(chats)?.map((chat) => (
         <div className='chats' key={chat[0]} onClick={()=>handleSelect(chat[1].userinfo)}>
           <Avatar src={chat[1].userinfo.photoURL} />
           <div className="text">
@@ -45,7 +45,7 @@ function Chats() {
             }}>{chat[1].lastmessage?chat[1].lastmessage.text:<span></span>}</span>
           </div>
         </div>
-      ))
+      )): <span></span>
     }
     </div>
   )

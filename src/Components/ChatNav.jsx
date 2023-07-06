@@ -14,9 +14,9 @@ function ChatNav() {
   return (
     <div className='chatnav'>
         <Box sx={{ flexGrow: 1 }}>
-      <AppBar style={{padding:'10px'}} position="static">
+      <AppBar id='chat-app-bar' position="sticky">
         <Toolbar variant="dense">
-          <Avatar src={data.user.photoURL}/>
+          <Avatar id='chat-user' src={data.user.photoURL}/>
           <span style={{marginLeft:'10px'}}>{data.user.displayName}</span>
         </Toolbar>
       </AppBar>

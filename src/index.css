@@ -80,10 +80,15 @@
   background-color: #06155a;
   color: white;
   padding: 0%;
-  min-height: 668px;
+  min-height: 664px;
   max-height: fit-content;
   box-shadow:  inset(1px 9px 0px #030f45);
   border-right: solid 1px gray;
+}
+#username{
+  font-size: large;
+  font-weight: bold;
+  margin-right: 10px;
 }
 .sidebar input{
   border: none;
@@ -188,12 +193,16 @@
   height: 50px;
   border-radius: 50%;
 }
+#chat-app-bar{
+  padding: 8px;
+}
 
 @media screen and (max-width:1156px) {
   #logoutbtn{
     position: relative;
     bottom: -608px;
     left: -75px;
+    padding: 5px;
   }
   .home-con{
     margin-top: 10px;
@@ -203,5 +212,44 @@
   }
   .signup .signup-wrap{
     width: 50%;
+    background-color: transparent;
+  }
+}
+@media screen and (max-width:625px) {
+  #logoutbtn{
+    position: relative;
+    bottom: -608px;
+    left: -80px;
+  }
+  .home-con{
+    width: 100%;
+  }
+  .signup .signup-wrap form{
+    width: 200px;
+    font-size: small;
+  }
+  .signup .signup-wrap{
+    width: 90%;
+    background-color: transparent;
+  }
+  #profile-img{
+    width: 30px;
+    height: 30px;
+  }
+  #username{
+    font-size: smaller;
+  }
+  #chat-user{
+    width: 30px;
+    height: 30px;
+  }
+  #chat-app-bar{
+    padding: 4px;
+  }
+  .sidebar{
+    min-height: 656px;
+  }
+  .input-sec{
+    width: 180px;
   }
 }

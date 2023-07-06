@@ -35,10 +35,10 @@ function Navbar() {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="sticky" sx={{ padding: '2px' }}>
+                <AppBar position="sticky">
                     <Toolbar>
-                        <span style={{ fontSize: 'large', fontWeight: 'bold', marginRight: '10px' }}>{user.displayName}</span>
-                        <Avatar src={user.photoURL} />
+                        <span id='username'>{user.displayName}</span>
+                        <Avatar id="profile-img" src={user.photoURL} />
                         <Button id='logoutbtn' variant='contained' onClick={logout} sx={{ position: 'absolute', right: '5px' }}>
                             logout
                         </Button>

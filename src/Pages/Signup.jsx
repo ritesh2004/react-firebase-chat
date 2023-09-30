@@ -5,6 +5,11 @@ import InsertEmoticonSharpIcon from '@mui/icons-material/InsertEmoticonSharp';
 import { Link, useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://frceuzxqwexmrbfvqjvm.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZyY2V1enhxd2V4bXJiZnZxanZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI2MjQ3MTQsImV4cCI6MjAwODIwMDcxNH0.a8388biNDvaNsES_tMKi38HDzWi8oHVf0oZsjuqgFwo'
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 function Signup() {
   const navigate = useNavigate();
@@ -42,31 +47,27 @@ function Signup() {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
       // console.log(user)
-      const storageRef = ref(storage, username);
-      const uploadTask = uploadBytesResumable(storageRef, image);
-      uploadTask.on('state-changed',
-      ()=>{},
-        (error) => {
-          // setErr(error.message);
-          console.log(error.message)
-        },
-         () => {
-           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateProfile(res.user, {
-              displayName: username,
-              photoURL: downloadURL
-            });
-            // console.log(res.user)
-            await setDoc(doc(db, "users", res.user.uid), {
-              uid: res.user.uid,
-              displayName: username,
-              email,
-              photoURL: downloadURL
-            });
-            await setDoc(doc(db, "userChats", res.user.uid), {})
-          });
-        }
-      );
+      const {data,error} = await supabase.storage
+      .from('profile')
+      .upload('public/'+username+'.jpg',image);
+      let info = data;
+      if (!error) {
+        let {path} = info;
+        console.log(path)
+        const downloadURL = `https://frceuzxqwexmrbfvqjvm.supabase.co/storage/v1/object/public/profile/${path}`
+        await updateProfile(res.user, {
+          displayName: username,
+          photoURL: downloadURL
+        });
+        // console.log(res.user)
+        await setDoc(doc(db, "users", res.user.uid), {
+          uid: res.user.uid,
+          displayName: username,
+          email,
+          photoURL: downloadURL
+        });
+        await setDoc(doc(db, "userChats", res.user.uid), {})
+      
       setErr(null);
       setForm({
         username: "",
@@ -75,6 +76,7 @@ function Signup() {
         image: null
       });
       navigate('/');
+    }
     } catch (error) {
       console.log(error.message);
       setErr(error.message);

@@ -13,20 +13,20 @@ import Col from 'react-bootstrap/Col';
 
 
 function Chatroom() {
-  const [text, setText] = useState("");
+  const [textData, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
   const { currentUser } = useContext(Authcontext);
   const { data } = useContext(Chatcontext);
 
   const handleText = async () => {
-    if (text !== "") {
-      const textData = text;
+    if (textData !== "") {
+      const text = textData;
       setText("");
       await updateDoc(doc(db, 'chats', data.chatId), {
         messages: arrayUnion({
           id: uuid(),
-          textData,
+          text,
           senderId: currentUser.uid,
           date: Timestamp.now()
         })
@@ -34,13 +34,13 @@ function Chatroom() {
 
       await updateDoc(doc(db, 'userChats', currentUser.uid), {
         [data.chatId + ".lastmessage"]: {
-          textData
+          text
         },
         [data.chatId + ".date"]: serverTimestamp()
       })
       await updateDoc(doc(db, 'userChats', data.user.uid), {
         [data.chatId + ".lastmessage"]: {
-          textData
+          text
         },
         [data.chatId + ".date"]: serverTimestamp()
       })
@@ -74,7 +74,7 @@ function Chatroom() {
         <Container style={{ backgroundColor: 'white'}}>
           <Row style={{display:'flex',alignItems:'center'}}>
             <Col xs={10}>
-              <input type="text" style={{border:'none',outline:'none'}} placeholder='Type here...' value={text} onChange={(e) => { setText(e.target.value) }} required />
+              <input type="text" style={{border:'none',outline:'none'}} placeholder='Type here...' value={textData} onChange={(e) => { setText(e.target.value) }} required />
             </Col>
             <Col xs={1}>
               <button id='sendbtn' onClick={handleText}><SendIcon /></button>

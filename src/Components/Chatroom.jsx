@@ -21,10 +21,12 @@ function Chatroom() {
 
   const handleText = async () => {
     if (text !== "") {
+      const textData = text;
+      setText("");
       await updateDoc(doc(db, 'chats', data.chatId), {
         messages: arrayUnion({
           id: uuid(),
-          text,
+          textData,
           senderId: currentUser.uid,
           date: Timestamp.now()
         })
@@ -32,13 +34,13 @@ function Chatroom() {
 
       await updateDoc(doc(db, 'userChats', currentUser.uid), {
         [data.chatId + ".lastmessage"]: {
-          text
+          textData
         },
         [data.chatId + ".date"]: serverTimestamp()
       })
       await updateDoc(doc(db, 'userChats', data.user.uid), {
         [data.chatId + ".lastmessage"]: {
-          text
+          textData
         },
         [data.chatId + ".date"]: serverTimestamp()
       })
